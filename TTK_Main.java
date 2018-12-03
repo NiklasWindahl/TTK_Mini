@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
-public class TTK_Mini {
+public class TTK_Main {
 
  private static boolean logged = false; // User logged in?
  private static boolean looping = true;
@@ -67,13 +67,13 @@ public class TTK_Mini {
 
  public static void main(String[] args) {
 
-  TTK_Mini ttk_mini = new TTK_Mini();
+  TTK_Main ttk_main = new TTK_Main();
   Scanner scan = new Scanner(System.in);
 
-  ttk_mini.welcomeMessage();
+  ttk_main.welcomeMessage();
 
   while (looping) {
-   looping = ttk_mini.loginOrCreateUser(scan);
+   looping = ttk_main.loginOrCreateUser(scan);
   }
 
   scan.close();
