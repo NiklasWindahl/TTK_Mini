@@ -47,22 +47,26 @@ public class TTK_Main {
         userOption = scan.nextInt();
 
         if (userOption == 1 && !logged) { // User selected "login"
-          System.out.println('\n' + "[call method to login user]" + '\n');
+          System.out.println('\n' + "[call methods to login user]" + '\n');
           // System.out.print('\n' + "Username: ");
-          // Call the login method:
-          // 1. Sends 'username' as parameter to be checked;
-          // 2. Sets 'username' from string returned by login method
-          // username = Login.login(username);
-          // Add if-statement here? if (username != "-1") { logged = true } ?
+          // Call the login methods...
+          // Set 'username' from string returned by nameInput() method
+          // username = Login.nameInput();
+          // System.out.print("Password: ");
+          // Set 'password' from string returned by passInput() method
+          // password = Login.passInput();
+          // Check if password is correct; Login.check() returns a boolean
+          // if (Login.check(username, password)) { logged = true }
           logged = true; // Set user as logged in
           welcomeMessage();
         } else if (userOption == 1 && logged) { // User selected "logout"
           System.out.println("Logging out ...");
           logged = false;
           System.out.println("You are logged out." + '\n');
+          // username = "-1";
         } else if (userOption == 2) { // User selected "create new user"
           // Create.create();
-          System.out.println('\n' + "[call method to create user]" + '\n');
+          System.out.println('\n' + "[call methods to create user]" + '\n');
         } else if (userOption == 3) { // User selected "quit"
           System.out.println("Goodbye.");
           looping = false;
