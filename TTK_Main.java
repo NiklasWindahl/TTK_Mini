@@ -3,8 +3,13 @@ import java.util.InputMismatchException;
 
 public class TTK_Main {
 
- private static boolean logged = false; // User logged in?
+ // Public boolean for logged in status
+ public static boolean logged = false;
+ // Private boolean for menu loops
  private static boolean looping = true;
+ // Private string for currently logged in username
+ private static String username = "-1";
+
 
  private void welcomeMessage() {
   System.out.println("Welcome!!!" + '\n');
