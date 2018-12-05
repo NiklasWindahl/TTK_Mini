@@ -10,7 +10,6 @@ Scanner scan = new Scanner(System.in);
   static ArrayList<String> user = new ArrayList<String>();
   static ArrayList<String> password = new ArrayList<String>();
 
-//  UserList UsL = new UserList(userName, userPassword);
 
 private void createUser(){
 
