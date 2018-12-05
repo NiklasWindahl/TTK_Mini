@@ -3,9 +3,10 @@ import java.util.ArrayList;
 
 public class Create{
   Scanner scan = new Scanner();
-  static ArrayList<String> user = new ArrayList<String>();
-  UserList UsL = new UserList(userName, userPassword);
 
+/*  static ArrayList<String> user = new ArrayList<String>();
+  UserList UsL = new UserList(userName, userPassword);
+*/
 
 private static void createUser(Scanner scan){
   System.out.println("Enter Username: ");
