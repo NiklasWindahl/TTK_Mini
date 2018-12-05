@@ -15,6 +15,7 @@ public class TTK_Main {
   // Private string for currently logged in username
   private static String username = "-1";
 
+  public Users users = new Users();
 
   private void welcomeMessage() {
     if (logged) {
@@ -39,26 +40,32 @@ public class TTK_Main {
     int userOption = 0;
     boolean looping = true;
 
+    String username = "-1";
+    String password = "-1";
+
     while (looping) {
 
       displayOptions();
+
+      // users.createUsers();
+      // System.out.println(users.validUsers.get(1));
 
       try {
         userOption = scan.nextInt();
 
         if (userOption == 1 && !logged) { // User selected "login"
-          System.out.println('\n' + "[call methods to login user]" + '\n');
-          // System.out.print('\n' + "Username: ");
+          System.out.print('\n' + "Username: ");
           // Call the login methods...
           // Set 'username' from string returned by nameInput() method
-          // username = Login.nameInput();
-          // System.out.print("Password: ");
+          username = Login.nameInput();
+          System.out.print("Password: ");
           // Set 'password' from string returned by passInput() method
-          // password = Login.passInput();
+          password = Login.passInput();
           // Check if password is correct; Login.check() returns a boolean
-          // if (Login.check(username, password)) { logged = true }
-          logged = true; // Set user as logged in
-          welcomeMessage();
+          if (Login.check(username, password)) {
+            logged = true;
+            welcomeMessage();
+          }
         } else if (userOption == 1 && logged) { // User selected "logout"
           System.out.println("Logging out ...");
           logged = false;
@@ -88,9 +95,12 @@ public class TTK_Main {
     TTK_Main ttk_main = new TTK_Main();
     Scanner scan = new Scanner(System.in);
 
+
     ttk_main.loginOrCreateUser(scan);
 
     scan.close();
+
+    // System.out.println(users.validPasswords.get(1));
 
   } // main closure
 
