@@ -2,34 +2,28 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 
-
-
-
-
-
-
 public class TTK_Main {
 
   // Public boolean for logged in status
   public static boolean logged = false;
-  // Private string for currently logged in username
-  private static String username = "-1";
 
-  public Users users = new Users();
+  // Object for calling methods in the Login class
+  private static Login login = new Login();
 
-  private void welcomeMessage() {
+
+  private void welcomeMessage(String username) {
     if (logged) {
-      System.out.println("Welcome " + username + "!" + '\n');
+      System.out.println('\n' + "Welcome " + username + "!");
     } else {
-      System.out.println("You are not logged in." + '\n');
+      System.out.println('\n' + "You are not logged in.");
     }
   }
 
   private void displayOptions() {
     if (!logged) {
-      System.out.println("1. Login");
+      System.out.println('\n' + "1. Login");
     } else {
-      System.out.println("1. Logout");
+      System.out.println('\n' + "1. Logout");
     }
     System.out.println("2. Create new user");
     System.out.println("3. Quit");
@@ -40,40 +34,43 @@ public class TTK_Main {
     int userOption = 0;
     boolean looping = true;
 
-    String username = "-1";
-    String password = "-1";
-
     while (looping) {
 
       displayOptions();
 
-      // users.createUsers();
-      // System.out.println(users.validUsers.get(1));
-
       try {
         userOption = scan.nextInt();
 
+        String username = "-1";
+
         if (userOption == 1 && !logged) { // User selected "login"
-          System.out.print('\n' + "Username: ");
-          // Call the login methods...
-          // Set 'username' from string returned by nameInput() method
-          username = Login.nameInput();
-          System.out.print("Password: ");
-          // Set 'password' from string returned by passInput() method
-          password = Login.passInput();
-          // Check if password is correct; Login.check() returns a boolean
-          if (Login.check(username, password)) {
-            logged = true;
-            welcomeMessage();
+          if (login.hasUsers()) {
+            System.out.print('\n' + "Username: ");
+            // Call the login methods...
+            // Set 'username' from string returned by nameInput() method
+            username = login.nameInput();
+            System.out.print("Password: ");
+            // Set 'password' from string returned by passInput() method
+            String password = login.passInput();
+            // Check if password is correct; Login.check() returns a boolean
+            if (login.check(username, password)) {
+              logged = true;
+              welcomeMessage(username);
+            } else {
+              System.out.println('\n' + "Invalid username or password.");
+              logged = false;
+            }
+          } else {
+            System.out.println("No users found.");
           }
         } else if (userOption == 1 && logged) { // User selected "logout"
-          System.out.println("Logging out ...");
+          System.out.println('\n' + "Logging out ...");
           logged = false;
-          System.out.println("You are logged out." + '\n');
-          // username = "-1";
+          System.out.println("You are logged out.");
+          username = "-1";
         } else if (userOption == 2) { // User selected "create new user"
           // Create.create();
-          System.out.println('\n' + "[call methods to create user]" + '\n');
+          System.out.println('\n' + "[call methods to create user]");
         } else if (userOption == 3) { // User selected "quit"
           System.out.println("Goodbye.");
           looping = false;
@@ -95,13 +92,14 @@ public class TTK_Main {
     TTK_Main ttk_main = new TTK_Main();
     Scanner scan = new Scanner(System.in);
 
+    // Temporary solution: adds a number of users
+    login.createUsers();
 
+    // Run the menu
     ttk_main.loginOrCreateUser(scan);
 
     scan.close();
 
-    // System.out.println(users.validPasswords.get(1));
-
-  } // main closure
+  }
 
 }
