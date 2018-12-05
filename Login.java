@@ -1,26 +1,41 @@
 import java.util.Scanner;
 import java.util.ArrayList;
 // behöver en arraylist
+
+
+
 public class Login{
 
+public Users users = new Users();
+public String nameInput() {
+  Scanner input1 = new Scanner (System.in);
+  String userName = input1.next();
+  return userName;
+}
+
+
+public String passInput() {
+  Scanner input1 = new Scanner (System.in);
+  String userPass = input1.next();
+  return userPass;
+}
+public boolean check(String userName, String Password) {
+  for(int i = 0; i < users.length; i++){
+
+if(userName == users.validUsers.get(i))
+if(userPass == users.validPasswords.get(i)){
+return true;
+} else { return false;
+      }
+    }
+  }
+}
+/*
   private void run(){
-    //tillfälliga classvariabler
-    String Username;
-    String Password;
-    /* tillfälliga credentialls
-    Password = "admin";
-    Username = "admin";
-    */
-    // dölja password skrivandet;
-    /*TextField password = new TextField(8);
-    password.setEchoChar('*');
-    */
     Scanner input1 = new Scanner(System.in);
-    System.out.println("Enter Username : ");
     String username = input1.next();
 
     Scanner input2 = new Scanner(System.in);
-    System.out.println("Enter Password : ");
     String password = input2.next();
 
     if (username.equals(validUsers) && password.equals(validPasswords)) {
@@ -35,13 +50,4 @@ public class Login{
     } else {
         System.out.println("Invalid Username & Password!");
     }
-  }
-
-public static void main(String[] args) {
-  Scanner scan = new Scanner (System.in);
-  Login lgn = new Login();
-
-  lgn.run();
-}
-
-}
+    */
