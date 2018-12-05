@@ -4,32 +4,45 @@ import java.util.ArrayList;
 
 
 
-public class Login{
+public class Login {
 
-public Users users = new Users();
-public String nameInput() {
-  Scanner input1 = new Scanner (System.in);
-  String userName = input1.next();
-  return userName;
-}
+  public Users users = new Users();
 
+  public String nameInput() {
+    Scanner input1 = new Scanner(System.in);
+    String userName = input1.next();
+    return userName;
+  }
 
-public String passInput() {
-  Scanner input1 = new Scanner (System.in);
-  String userPass = input1.next();
-  return userPass;
-}
-public boolean check(String userName, String Password) {
-  for(int i = 0; i < users.length; i++){
+  public String passInput() {
+    Scanner input1 = new Scanner(System.in);
+    String userPass = input1.next();
+    return userPass;
+  }
 
-if(userName == users.validUsers.get(i))
-if(userPass == users.validPasswords.get(i)){
-return true;
-} else { return false;
+  public boolean hasUsers() {
+    // Returns true if the arraylist contains any number of users
+    return users.validUsers.size() >= 1;
+  }
+
+  // Temporary solution: adds a number of users
+  public void createUsers() {
+    users.createUsers();
+  }
+
+  public boolean check(String userName, String userPass) {
+
+    for (int i = 0; i < users.validUsers.size(); i++) {
+
+      if (userName.equals(users.validUsers.get(i))) {
+        return userPass.equals(users.validPasswords.get(i));
       }
     }
+    return false;
   }
+
 }
+
 /*
   private void run(){
     Scanner input1 = new Scanner(System.in);
