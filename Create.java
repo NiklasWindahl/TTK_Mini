@@ -3,23 +3,25 @@ import java.util.ArrayList;
 
 public class Create{
 
-
+static Users UR = new Users();
 
 Scanner scan = new Scanner(System.in);
 
-  static ArrayList<String> user = new ArrayList<String>();
-  static ArrayList<String> password = new ArrayList<String>();
+  // static ArrayList<String> user = new ArrayList<String>();
+  // static ArrayList<String> password = new ArrayList<String>();
 
 
-private void createUser(){
+public void createUser(){
+
+  // ska anropa Users
 
  System.out.println("Enter Username: ");
  String userName = scan.next();
- user.add(userName);
+ UR.validUsers.add(userName);
 
  System.out.println("Enter Password: ");
  String userPassword = scan.next();
- password.add(userPassword);
+ UR.validPasswords.add(userPassword);
 
  System.out.println("User: " + userName + " has been created!       please choose next action");
 
@@ -38,15 +40,12 @@ public void createUser(Scanner scan){
 
   public static void main(String[] args) {
     Create CR = new Create();
-    System.out.println(user.size());
+    System.out.println(UR.validUsers.size());
     CR.createUser();
-    System.out.println(user.size());
+    System.out.println(UR.validPasswords.size());
 
 
 
-  // Scanner scan = new Scanner(System.in);
-  // Create CR = new Create();
-  // CR.createUser();
 }
 
 }
