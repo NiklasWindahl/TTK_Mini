@@ -2,33 +2,29 @@ import java.util.Scanner;
 import java.util.InputMismatchException;
 
 
-
-
-
-
-
-
 public class TTK_Main {
 
   // Public boolean for logged in status
   public static boolean logged = false;
-  // Private string for currently logged in username
-  private static String username = "-1";
+
+  // Objects for calling methods in the Login + Create classes
+  private static Login login = new Login();
+  private static Create create = new Create();
 
 
-  private void welcomeMessage() {
+  private void welcomeMessage(String username) {
     if (logged) {
-      System.out.println("Welcome " + username + "!" + '\n');
+      System.out.println('\n' + "Welcome " + username + "!");
     } else {
-      System.out.println("You are not logged in." + '\n');
+      System.out.println('\n' + "You are not logged in.");
     }
   }
 
   private void displayOptions() {
     if (!logged) {
-      System.out.println("1. Login");
+      System.out.println('\n' + "1. Login");
     } else {
-      System.out.println("1. Logout");
+      System.out.println('\n' + "1. Logout");
     }
     System.out.println("2. Create new user");
     System.out.println("3. Quit");
@@ -42,31 +38,74 @@ public class TTK_Main {
     while (looping) {
 
       displayOptions();
+      boolean passwordSuccess = false;
+      String newPassword = "-1";
+      String repeatedPassword = "-2";
 
       try {
         userOption = scan.nextInt();
 
+        String username = "-1";
+
         if (userOption == 1 && !logged) { // User selected "login"
-          System.out.println('\n' + "[call methods to login user]" + '\n');
-          // System.out.print('\n' + "Username: ");
-          // Call the login methods...
-          // Set 'username' from string returned by nameInput() method
-          // username = Login.nameInput();
-          // System.out.print("Password: ");
-          // Set 'password' from string returned by passInput() method
-          // password = Login.passInput();
-          // Check if password is correct; Login.check() returns a boolean
-          // if (Login.check(username, password)) { logged = true }
-          logged = true; // Set user as logged in
-          welcomeMessage();
-        } else if (userOption == 1 && logged) { // User selected "logout"
-          System.out.println("Logging out ...");
+          if (login.hasUsers()) {
+            System.out.print('\n' + "Username: ");
+            // Call the login methods...
+            // Set 'username' from string returned by nameInput() method
+            username = login.nameInput();
+            System.out.print("Password: ");
+            // Set 'password' from string returned by passInput() method
+            String password = login.passInput();
+            // Check if password is correct; Login.check() returns a boolean
+            if (login.check(username, password)) {
+              logged = true;
+              welcomeMessage(username);
+            } else {
+              System.out.println('\n' + "Invalid username or password.");
+              logged = false;
+            }
+          } else {
+            System.out.println("No users found.");
+          }
+        }
+
+        else if (userOption == 1 && logged) { // User selected "logout"
+          System.out.println('\n' + "Logging out ...");
           logged = false;
-          System.out.println("You are logged out." + '\n');
-          // username = "-1";
-        } else if (userOption == 2) { // User selected "create new user"
-          // Create.create();
-          System.out.println('\n' + "[call methods to create user]" + '\n');
+          System.out.println("You are logged out.");
+          username = "-1";
+        }
+
+        else if (userOption == 2) { // User selected "create new user"
+/*
+          System.out.print('\n' + "Enter a new username: ");
+          String newUsername = create.nameInput();
+          do {
+            System.out.print('\n' + "Enter a password for user " + newUsername + ": ");
+            newPassword = create.passInput();
+            System.out.print('\n' + "Repeat the password: ");
+            repeatedPassword = create.passInput();
+
+            if (newPassword.equals(repeatedPassword)) {
+              passwordSuccess = true;
+            } else {
+              System.out.print('\n' + "Mismatch, try again.");
+              passwordSuccess = false;
+            }
+          } while (!passwordSuccess);
+
+          // We now have everything we need to create a new user
+
+          System.out.println('\n' + "Creating user " + newUsername + " ... ");
+          boolean userWasCreated = false;
+          // If createUser() returns true, we will know that it worked
+          userWasCreated = create.createUser(newUsername, newPassword);
+          if (userWasCreated) {
+            System.out.print("DONE.");
+          } else {
+            System.out.print("FAILED.");
+          }
+*/
         } else if (userOption == 3) { // User selected "quit"
           System.out.println("Goodbye.");
           looping = false;
@@ -88,10 +127,14 @@ public class TTK_Main {
     TTK_Main ttk_main = new TTK_Main();
     Scanner scan = new Scanner(System.in);
 
+    // Temporary solution: adds a number of users
+    login.createUsers();
+
+    // Run the menu
     ttk_main.loginOrCreateUser(scan);
 
     scan.close();
 
-  } // main closure
+  }
 
 }
