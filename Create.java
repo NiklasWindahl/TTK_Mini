@@ -1,9 +1,8 @@
 import java.util.Scanner;
-import java.util.ArrayList;
 
 public class Create{
 
-static Users UR = new Users();
+public static Users users = new Users();
 
 Scanner scan = new Scanner(System.in);
 
@@ -14,30 +13,30 @@ Scanner scan = new Scanner(System.in);
 public String nameInput(){
  String userName = scan.next();
 
-   for (int i = 0; i < UR.validUsers.size(); i++) {
-     if (userName.equals(UR.validUsers.get(i))) {
+   for (int i = 0; i < users.validUsers.size(); i++) {
+     if (userName.equals(users.validUsers.get(i))) {
        userName = "-1";
      }
    }
 
- //UR.validUsers.add(userName);
+ //users.validUsers.add(userName);
  return userName;
 }
 
 public String passInput(){
   String userPassword = scan.next();
-  //UR.validPasswords.add(userPassword);
+  //users.validPasswords.add(userPassword);
   return userPassword;
 }
 
 public boolean createUser(String userName, String userPassword){
-  int userArraySizeBefore = UR.validUsers.size();
-  UR.validUsers.add(userName);
-  int userArraySizeAfter = UR.validUsers.size();
+  int userArraySizeBefore = users.validUsers.size();
+  users.validUsers.add(userName);
+  int userArraySizeAfter = users.validUsers.size();
 
-  int passwordArraySizeBefore = UR.validPasswords.size();
-  UR.validPasswords.add(userPassword);
-  int passwordArraySizeAfter = UR.validPasswords.size();
+  int passwordArraySizeBefore = users.validPasswords.size();
+  users.validPasswords.add(userPassword);
+  int passwordArraySizeAfter = users.validPasswords.size();
 
   if (userArraySizeBefore == userArraySizeAfter || passwordArraySizeBefore == passwordArraySizeAfter){
     return false;

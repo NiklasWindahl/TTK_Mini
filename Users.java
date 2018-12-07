@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Users{
-  public ArrayList<String> validUsers = new ArrayList<String>();
-  public ArrayList<String> validPasswords = new ArrayList<String>();
+  public static ArrayList<String> validUsers = new ArrayList<String>();
+  public static ArrayList<String> validPasswords = new ArrayList<String>();
 
 
   public void createUsers() {
