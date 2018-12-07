@@ -69,5 +69,3 @@ public void createUser(Scanner scan){
 
 
 }
-
-}
