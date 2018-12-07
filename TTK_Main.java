@@ -7,8 +7,9 @@ public class TTK_Main {
   // Public boolean for logged in status
   public static boolean logged = false;
 
-  // Object for calling methods in the Login class
+  // Objects for calling methods in the Login + Create classes
   private static Login login = new Login();
+  private static Create create = new Create();
 
 
   private void welcomeMessage(String username) {
@@ -37,6 +38,9 @@ public class TTK_Main {
     while (looping) {
 
       displayOptions();
+      boolean passwordSuccess = false;
+      String newPassword = "-1";
+      String repeatedPassword = "-2";
 
       try {
         userOption = scan.nextInt();
@@ -63,14 +67,45 @@ public class TTK_Main {
           } else {
             System.out.println("No users found.");
           }
-        } else if (userOption == 1 && logged) { // User selected "logout"
+        }
+
+        else if (userOption == 1 && logged) { // User selected "logout"
           System.out.println('\n' + "Logging out ...");
           logged = false;
           System.out.println("You are logged out.");
           username = "-1";
-        } else if (userOption == 2) { // User selected "create new user"
-          // Create.create();
-          System.out.println('\n' + "[call methods to create user]");
+        }
+
+        else if (userOption == 2) { // User selected "create new user"
+/*
+          System.out.print('\n' + "Enter a new username: ");
+          String newUsername = create.nameInput();
+          do {
+            System.out.print('\n' + "Enter a password for user " + newUsername + ": ");
+            newPassword = create.passInput();
+            System.out.print('\n' + "Repeat the password: ");
+            repeatedPassword = create.passInput();
+
+            if (newPassword.equals(repeatedPassword)) {
+              passwordSuccess = true;
+            } else {
+              System.out.print('\n' + "Mismatch, try again.");
+              passwordSuccess = false;
+            }
+          } while (!passwordSuccess);
+
+          // We now have everything we need to create a new user
+
+          System.out.println('\n' + "Creating user " + newUsername + " ... ");
+          boolean userWasCreated = false;
+          // If createUser() returns true, we will know that it worked
+          userWasCreated = create.createUser(newUsername, newPassword);
+          if (userWasCreated) {
+            System.out.print("DONE.");
+          } else {
+            System.out.print("FAILED.");
+          }
+*/
         } else if (userOption == 3) { // User selected "quit"
           System.out.println("Goodbye.");
           looping = false;
