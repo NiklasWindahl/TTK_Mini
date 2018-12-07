@@ -49,23 +49,4 @@ public boolean createUser(String userName, String userPassword){
 
 }
 
-/*
-public void createUser(Scanner scan){
-  System.out.println("Enter Username: ");
-  String userName = scan.next();
-  System.out.println("Enter Password: ");
-  String userPassword = scan.next();
-  System.out.println("User: " + this.userName + " has been created!       please choose next action");
-  Users.validUsers.add(this.userName);
-  Users.validPasswords.add(this.userPassword);
-}
-
-  public static void main(String[] args) {
-    Create CR = new Create();
-    System.out.println(UR.validUsers.size());
-    CR.createUser();
-    System.out.println(UR.validPasswords.size());
-    */
-
-
 }
