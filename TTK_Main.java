@@ -45,7 +45,7 @@ public class TTK_Main {
       try {
         userOption = scan.nextInt();
 
-        String username = "-1";
+        String username = "-0";
 
         if (userOption == 1 && !logged) { // User selected "login"
           if (login.hasUsers()) {
@@ -77,9 +77,17 @@ public class TTK_Main {
         }
 
         else if (userOption == 2) { // User selected "create new user"
-/*
-          System.out.print('\n' + "Enter a new username: ");
-          String newUsername = create.nameInput();
+
+          String newUsername = "-1";
+
+          while (newUsername.equals("-1")) {
+            System.out.print('\n' + "Enter a new username: ");
+            newUsername = create.nameInput();
+            if (newUsername.equals("-1")) {
+              System.out.print('\n' + "Username taken, choose another.");
+            }
+          }
+
           do {
             System.out.print('\n' + "Enter a password for user " + newUsername + ": ");
             newPassword = create.passInput();
@@ -89,23 +97,23 @@ public class TTK_Main {
             if (newPassword.equals(repeatedPassword)) {
               passwordSuccess = true;
             } else {
-              System.out.print('\n' + "Mismatch, try again.");
+              System.out.println('\n' + "Mismatch, try again.");
               passwordSuccess = false;
             }
           } while (!passwordSuccess);
 
           // We now have everything we need to create a new user
 
-          System.out.println('\n' + "Creating user " + newUsername + " ... ");
+          System.out.print('\n' + "Creating user " + newUsername + " ... ");
           boolean userWasCreated = false;
           // If createUser() returns true, we will know that it worked
           userWasCreated = create.createUser(newUsername, newPassword);
           if (userWasCreated) {
-            System.out.print("DONE.");
+            System.out.println("DONE.");
           } else {
-            System.out.print("FAILED.");
+            System.out.println("FAILED.");
           }
-*/
+
         } else if (userOption == 3) { // User selected "quit"
           System.out.println("Goodbye.");
           looping = false;
