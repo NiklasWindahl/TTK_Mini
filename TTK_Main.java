@@ -1,6 +1,9 @@
 import java.util.Scanner;
 import java.util.InputMismatchException;
 
+/* TODO
+* Bryt ut metoder ur loginOrCreateUser() och döp om den till userMenu()
+* */
 
 public class TTK_Main {
 
@@ -37,10 +40,13 @@ public class TTK_Main {
 
     while (looping) {
 
-      displayOptions();
-      boolean passwordSuccess = false;
       String newPassword = "-1";
       String repeatedPassword = "-2";
+      boolean setPasswordSuccess = false;
+
+      displayOptions();
+
+      System.out.println("Number of users in the ArrayList: " + login.users.validUsers.size() + '\n');
 
       try {
         userOption = scan.nextInt();
@@ -48,6 +54,7 @@ public class TTK_Main {
         String username = "-0";
 
         if (userOption == 1 && !logged) { // User selected "login"
+
           if (login.hasUsers()) {
             System.out.print('\n' + "Username: ");
             // Call the login methods...
@@ -95,18 +102,18 @@ public class TTK_Main {
             repeatedPassword = create.passInput();
 
             if (newPassword.equals(repeatedPassword)) {
-              passwordSuccess = true;
+              setPasswordSuccess = true;
             } else {
               System.out.println('\n' + "Mismatch, try again.");
-              passwordSuccess = false;
+              setPasswordSuccess = false;
             }
-          } while (!passwordSuccess);
+          } while (!setPasswordSuccess);
 
           // We now have everything we need to create a new user
 
           System.out.print('\n' + "Creating user " + newUsername + " ... ");
           boolean userWasCreated = false;
-          // If createUser() returns true, we will know that it worked
+          // If createUser() returns true, the user should have been added
           userWasCreated = create.createUser(newUsername, newPassword);
           if (userWasCreated) {
             System.out.println("DONE.");
@@ -136,7 +143,7 @@ public class TTK_Main {
     Scanner scan = new Scanner(System.in);
 
     // Temporary solution: adds a number of users
-    login.createUsers();
+    // login.createUsers();
 
     // Run the menu
     ttk_main.loginOrCreateUser(scan);

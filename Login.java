@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Login {
 
-  public Users users = new Users();
+  public static Users users = new Users();
 
   public String nameInput() {
     Scanner input1 = new Scanner(System.in);
